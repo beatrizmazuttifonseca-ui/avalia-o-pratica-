@@ -4,9 +4,179 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jardim Urbano - Cultive a Natureza</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* VARIABLES DE TEMA */
+    :root {
+      --bg-color: #f4f7f5;
+      --text-color: #2d3748;
+      --card-bg: #ffffff;
+      --primary-color: #2e7d32;
+      --primary-hover: #1b5e20;
+      --header-bg: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121814;
+      --text-color: #e2e8f0;
+      --card-bg: #1e2621;
+      --primary-color: #4caf50;
+      --primary-hover: #66bb6a;
+      --header-bg: #1a221d;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ESTILOS GERAIS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* CABEÇALHO E NAVEGAÇÃO */
+    header {
+      background-color: var(--header-bg);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    #theme-toggle {
+      background: none;
+      border: 1px solid var(--primary-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50%;
+    }
+
+    /* SEÇÃO HERO (INÍCIO) */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-main {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn-main:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* CATÁLOGO DE PLANTAS */
+    .catalog {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .catalog h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-card {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-card:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* RODAPÉ */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
+
+  <!-- CABEÇALHO -->
   <header>
     <div class="logo">🌱 Jardim Urbano</div>
     <nav>
@@ -17,12 +187,14 @@
   </header>
 
   <main>
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
       <h1>Traga a natureza para o seu lar</h1>
       <p>Descubra as melhores espécies de plantas de interior para transformar seu ambiente e melhorar sua qualidade de vida.</p>
       <a href="#plantas" class="btn-main">Explorar Coleção</a>
     </section>
 
+    <!-- CATÁLOGO DE CARDS -->
     <section id="plantas" class="catalog">
       <h2>Nossas Favoritas</h2>
       <div class="grid">
@@ -31,4 +203,60 @@
           <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=600&q=80" alt="Monstera Deliciosa">
           <div class="card-content">
             <h3>Costela-de-Adão</h3>
-            <p>Fácil de cuidar, gosta de luz indireta e traz um visual tropical incrível
+            <p>Fácil de cuidar, gosta de luz indireta e traz um visual tropical incrível.</p>
+            <button class="btn-card" onclick="adicionarFav('Costela-de-Adão')">Favoritar ❤️</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1597055181300-e3633a207519?auto=format&fit=crop&w=600&q=80" alt="Jiboia">
+          <div class="card-content">
+            <h3>Jiboia Verde</h3>
+            <p>Perfeita para prateleiras e vasos suspensos. Muito resistente e purificadora.</p>
+            <button class="btn-card" onclick="adicionarFav('Jiboia Verde')">Favoritar ❤️</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80" alt="Suculenta">
+          <div class="card-content">
+            <h3>Suculenta Jade</h3>
+            <p>Ideal para locais bem iluminados e requer pouca rega no dia a dia.</p>
+            <button class="btn-card" onclick="adicionarFav('Suculenta Jade')">Favoritar ❤️</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>© 2026 Jardim Urbano - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    // Funcionalidade de Alternar Tema (Claro / Escuro)
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      
+      if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggleBtn.textContent = '🌙';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.textContent = '☀️';
+      }
+    });
+
+    // Função dos botões funcionais de favoritar
+    function adicionarFav(nomePlanta) {
+      alert(`${nomePlanta} foi adicionada aos seus favoritos! 🌿`);
+    }
+  </script>
+
+</body>
+</html>
