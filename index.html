@@ -3,110 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow Aesthetics | Maquiagem Premium</title>
-    <!-- Importação de fontes elegantes do Google Fonts -->
+    <title>Glow Aesthetics | Maquiagem de Luxo</title>
+    
+    <!-- Fontes Elegantes do Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <!-- Barra de Navegação -->
-    <header>
-        <div class="logo">GLOW <span>Aesthetics</span></div>
-        <nav class="nav-links">
-            <a href="#produtos">Produtos</a>
-            <a href="#sobre">Filosofia</a>
-            <a href="#colecao">Coleções</a>
-        </nav>
-        <button id="theme-toggle" class="btn-theme" aria-label="Mudar tema">
-            <span class="icon">✨</span> <span class="text">Modo Escuro</span>
-        </button>
-    </header>
+    <!-- 🎨 CÓDIGO CSS (Estilização) -->
+    <style>
+        /* --- VARIÁVEIS DE COR (TEMA CLARO) --- */
+        :root {
+            --bg-global: #fdfbf9;
+            --bg-header: rgba(253, 251, 249, 0.85);
+            --bg-card: #ffffff;
+            --text-primary: #1e1b19;
+            --text-secondary: #706965;
+            --accent: #d4a373; 
+            --accent-light: #f4eade;
+            --pink-glow: #e29578;
+            --shadow: rgba(30, 27, 25, 0.05);
+            --border: #efeae4;
+        }
 
-    <!-- Seção Hero (Banner de Entrada) -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="subtitle">Sua beleza, sua arte</span>
-            <h1>Realce o brilho que existe em você</h1>
-            <p>Fórmulas veganas, alta pigmentação e acabamento profissional para criar sua melhor versão todos os dias.</p>
-            <div class="hero-buttons">
-                <a href="#produtos" class="btn-primary">Explorar Produtos</a>
-                <a href="#sobre" class="btn-secondary">Nossa História</a>
-            </div>
-        </div>
-    </section>
+        /* --- VARIÁVEIS DE COR (TEMA ESCURO) --- */
+        body.dark {
+            --bg-global: #0e0d0c;
+            --bg-header: rgba(14, 13, 12, 0.85);
+            --bg-card: #161413;
+            --text-primary: #f7f3f0;
+            --text-secondary: #aba29d;
+            --accent: #e6b88a; 
+            --accent-light: #2a231e;
+            --pink-glow: #f0a58b;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --border: #282320;
+        }
 
-    <!-- Seção de Produtos / Destaques -->
-    <main class="container" id="produtos">
-        <div class="section-header">
-            <h2>Os Mais Desejados</h2>
-            <p>Descubra os itens favoritos da nossa comunidade de beleza</p>
-        </div>
-        
-        <div class="product-grid">
-            
-            <!-- Card 1 -->
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://unsplash.com" alt="Batons líquidos premium">
-                    <span class="tag">Novo</span>
-                </div>
-                <div class="card-info">
-                    <h3>Batom Matte Velvet</h3>
-                    <p class="description">Textura ultrafina com hidratação profunda e duração de até 12 horas.</p>
-                    <div class="card-footer">
-                        <span class="price">R$ 89,90</span>
-                        <button class="btn-card">Adicionar</button>
-                    </div>
-                </div>
-            </div>
+        /* --- RESET E ESTILOS PADRÃO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.2s ease;
+        }
 
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://unsplash.com" alt="Paleta de sombras">
-                    <span class="tag">Best Seller</span>
-                </div>
-                <div class="card-info">
-                    <h3>Paleta Quartz Shimmer</h3>
-                    <p class="description">12 cores ultra-pigmentadas entre acabamentos matte e cintilantes acetinados.</p>
-                    <div class="card-footer">
-                        <span class="price">R$ 149,90</span>
-                        <button class="btn-card">Adicionar</button>
-                    </div>
-                </div>
-            </div>
+        body {
+            background-color: var(--bg-global);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
 
-            <!-- Card 3 -->
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://unsplash.com" alt="Pincéis profissionais">
-                </div>
-                <div class="card-info">
-                    <h3>Kit Pincéis Majestic</h3>
-                    <p class="description">Cerdas sintéticas HD de suavidade extrema para uma aplicação uniforme e impecável.</p>
-                    <div class="card-footer">
-                        <span class="price">R$ 199,90</span>
-                        <button class="btn-card">Adicionar</button>
-                    </div>
-                </div>
-            </div>
+        /* --- BARRA DE NAVEGAÇÃO --- */
+        header {
+            background-color: var(--bg-header);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
 
-        </div>
-    </main>
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
 
-    <!-- Rodapé -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">GLOW <span>Aesthetics</span></div>
-            <p>Elevando a experiência da maquiagem a um ritual de autocuidado.</p>
-            <p class="copyright">&copy; 2026 Glow Aesthetics. Desenvolvido com sofisticação.</p>
-        </div>
-    </footer>
+        .logo span {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--pink-glow);
+        }
 
-    <script src="script.js"></script>
-</body>
-</html>
+        /* Contador do Carrinho */
+        .cart-status {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background-color: var(--accent-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        /* --- BOTÃO DE ALTERNAR TEMA --- */
+        .btn-theme {
+            background-color: var(--text-primary);
+            color: var(--bg-global);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px var(--shadow);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-theme:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* --- BANNER PRINCIPAL (HERO) --- */
+        .hero {
+            position: relative;
+            background: url('https://unsplash.com') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.2));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            color: #ffffff;
+        }
+
+        .hero-content .subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e5e5e5;
+            font-weight: 300;
+        }
+
+        .btn-main {
+            display: inline-block;
+            text-decoration: none;
+            background-color: var(--pink-glow);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(226, 149, 120, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-main:hover {
+            background-color: #d08263;
+            transform: translateY(-2px);
+        }
+
+        /* --- SEÇÃO DE PRODUTOS --- */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        /* CARDS */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px var(--shadow);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--text-primary);
+            color: var(--bg-global);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .card-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-info .description {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Botão Funcional do Card */
+        .btn-card {
+            background-color: transparent;
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-card:hover {
+            background-color: var(--text-primary);
+            color: var(--bg-card);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border);
+            background-color: var(--bg-card);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo span {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--pink-glow);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade para celulares */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .hero-content h1 { font-size: 2.4rem; }
